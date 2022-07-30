@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Page>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="pages">
+    <thead>
+        <tr class="home">
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Slug
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="id_@item.id" class="@item.slug">
+
+                <td>
+                    @item.title
+                </td>
+
+                <td>
+                    @item.slug
+                </td>
+
+                <td>
+
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a>|
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a>|
+                    @if (item.slug != "home")
+                    {
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    }
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{ 
+
+    <script>
+        $("table#pages tbody").sortable({
+            items: "tr:not(.home)",
+            placeholder: "ui-state-highlight",
+            update: function () {
+                let ids = $("table#pages tbody").sortable("serialize");
+                let url = "/admin/pages/reorder";
+
+                $.post(url, ids, function () { });
+
+            }
+
+
+        })
+    </script>
+
+
+
+
+}

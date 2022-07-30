@@ -69,3 +69,87 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+table.sorting tr:not(.home){
+    cursor:pointer;
+}
+
+.ui-state-highlight{
+    border:1px dashed #ccc;
+}
+
+a:hover {
+    opacity: .4 !important;
+    text-decoration:none;
+}
+
+
+.agx{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+    background: rgba(255,255,255,0.8);
+}
+
+.agx > img{
+    position:absolute;
+    top:30%;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+}
+
+.agx > p{
+    position:absolute;
+    top:30%;
+    
+    z-index:2;
+}
+
+.cartWrapper{
+    position:relative;
+}
+
+.cartbg{
+   
+    background:rgba(255,255,255,0.8);
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+
+}
+
+.cartbg >h3{
+    position:absolute;
+    top:30%;
+    left:30%;
+    transform:translate(-50%,-50%);
+    z-index:2;
+}
+
+    .cartbg > img {
+        position: absolute;
+        top: 40%;
+        left: 30%;
+        transform: translate(-50%,50%);
+        z-index: 2;
+    }
+
+.paypalForm{
+    position:absolute;
+    left:-300000px;
+}
+
+
+li.nav-item.logout{
+    position : absolute;
+    top:10px;
+    right:10px;
+}

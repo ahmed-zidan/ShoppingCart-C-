@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="Category">
+    <thead>
+        <tr>
+            
+            <th>
+               name
+            </th>
+            <th>
+                slug
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr id="id_@item.id">
+            <td>
+                @item.name
+            </td>
+            
+            <td>
+                @item.slug
+            </td>
+
+            <td>
+
+                <a asp-action="Edit" asp-route-id ="@item.id">Edit</a> |
+                <a class="confirmDeletion" asp-action="Delete" asp-route-id ="@item.id">Delete</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts{ 
+    
+    <script>
+        $("table#Category tbody").sortable({
+
+            items: "tr",
+            placeholder: "ui-state-highlight",
+            update: function () {
+                ids = $("table#Category tbody").sortable("serialize");
+                url = "/admin/Category/reorder";
+
+                $.post(url, ids, function () { });
+
+
+
+        }
+
+
+        })
+
+    </script>
+
+}
